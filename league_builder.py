@@ -2,7 +2,8 @@ import csv
 import random
 
 rows = []
-players = []
+experienced = []
+unexperienced = []
 Sharks = []
 Dragons = []
 Raptors = []
@@ -15,21 +16,36 @@ def open_file():
 		playerDictList = list(playerDict)
 		rows.extend(playerDictList)
 		for player in playerDictList:
-			players.append(player['Name'])
-			
+			if player['Soccer Experience']=="YES":
+				experienced.append(player['Name'])
+			else:
+				unexperienced.append(player['Name'])
+				
+
+def divide_ex():
+	exlen = int(len(experienced)/3)
+	exrandom = random.sample(experienced, exlen)
+	Sharks.extend(exrandom)
+	for player in exrandom:
+		experienced.remove(player)
+	exrandom = random.sample(experienced, exlen)
+	Dragons.extend(exrandom)	
+	for player in exrandom:
+		experienced.remove(player)
+	Raptors.extend(experienced)
 
 
-
-def divide_team():
-	randomsix = random.sample(players, 6)
-	Sharks.extend(randomsix)
-	for player in randomsix:
-		players.remove(player)
-	randomsix = random.sample(players, 6)
-	Dragons.extend(randomsix)
-	for player in randomsix:
-		players.remove(player)
-	Raptors.extend(players)
+def divide_unex():
+	unex = int(len(unexperienced)/3)
+	unexrandom = random.sample(unexperienced, unex)
+	Sharks.extend(unexrandom)
+	for player in unexrandom:
+		unexperienced.remove(player)
+	unexrandom = random.sample(unexperienced, unex)
+	Dragons.extend(unexrandom)	
+	for player in unexrandom:
+		unexperienced.remove(player)
+	Raptors.extend(unexperienced)	
 
 
 def show_players():
@@ -71,6 +87,7 @@ def write_file():
 					})			
 
 open_file()
-divide_team()
+divide_ex()
+divide_unex()
 show_players()
 write_file()
