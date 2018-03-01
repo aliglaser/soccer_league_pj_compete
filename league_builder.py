@@ -86,8 +86,9 @@ def write_file():
 						'Guardian Name(s)':row['Guardian Name(s)']
 					})			
 
-open_file()
-divide_ex()
-divide_unex()
-show_players()
-write_file()
+
+if __name__ == '__main__':
+	open_file()
+	divide_ex()
+	divide_unex()
+	write_file()
