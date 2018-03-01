@@ -1,15 +1,22 @@
 import csv
 import random
 
+
+#to put the result of the list of csv.DictReader(csvfile)
 rows = []
+
+#experienced/unexperienced students' lists
 experienced = []
 unexperienced = []
+
+#lists of three teams
 Sharks = []
 Dragons = []
 Raptors = []
 
 
-
+#open soccer_players.csv file
+#create the lists of experinced/unexperienced students
 def open_file():
 	with open('soccer_players.csv', newline="") as csvfile:
 		playerDict = csv.DictReader(csvfile, delimiter=",")
@@ -22,6 +29,10 @@ def open_file():
 				unexperienced.append(player['Name'])
 				
 
+#enlist the experienced students evenly to each list
+#use random.sample() method to pick the students from the experienced list
+#after randomly pick the students, remove them from the original(experienced list)
+#repeat 2 times and enlist the remaining students to the last team(in this case Raptors)
 def divide_ex():
 	exlen = int(len(experienced)/3)
 	exrandom = random.sample(experienced, exlen)
@@ -35,6 +46,11 @@ def divide_ex():
 	Raptors.extend(experienced)
 
 
+
+#enlist the unexperienced students evenly to each list
+#use random.sample() method to pick the students from the unexperienced list
+#after randomly pick the students, remove them from the original(unexperienced list)
+#repeat 2 times and enlist the remaining students to the last team(in this case Raptors)
 def divide_unex():
 	unex = int(len(unexperienced)/3)
 	unexrandom = random.sample(unexperienced, unex)
@@ -47,11 +63,6 @@ def divide_unex():
 		unexperienced.remove(player)
 	Raptors.extend(unexperienced)	
 
-
-def show_players():
-	print(Sharks)
-	print(Dragons)
-	print(Raptors)
 
 
 def write_file():
