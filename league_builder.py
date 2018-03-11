@@ -29,7 +29,7 @@ def open_file():
 				unexperienced.append(player['Name'])
 				
 
-#enlist the experienced students evenly to each list
+#enlist the experienced students evenly to each list :D
 #use random.sample() method to pick the students from the experienced list
 #after randomly pick the students, remove them from the original(experienced list)
 #repeat 2 times and enlist the remaining students to the last team(in this case Raptors)
@@ -64,7 +64,7 @@ def divide_unex():
 	Raptors.extend(unexperienced)	
 
 
-
+#write the file of the lists of students :D
 def write_file():
 	with open('teams.txt', 'w') as team:
 		fieldnames = ['Name', 'Soccer Experience', 'Guardian Name(s)']
@@ -97,9 +97,18 @@ def write_file():
 						'Guardian Name(s)':row['Guardian Name(s)']
 					})			
 
+#writing mail for the guardians :D
+def writing_mail():
+	for row in rows:
+		with open(str(row['Name'])+".txt", 'w') as indi_mail:
+			indi_mail.write("Dear "+row['Guardian Name(s)'])
+			indi_mail.write(" I Hope I can make a great player with you!")
+			indi_mail.write(" yay")
+
 
 if __name__ == '__main__':
 	open_file()
 	divide_ex()
 	divide_unex()
 	write_file()
+	writing_mail()
